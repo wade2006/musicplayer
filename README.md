@@ -1,1 +1,1 @@
-# musicplayer
+基于vue框架，利用html5的audio标签实现音频播放，利用html5的video标签实现视频播放，后台数据调用网易云音乐的api接口实现的简易播放器
