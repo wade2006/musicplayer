@@ -48,16 +48,11 @@ var app = new Vue({
   },
   methods: {
     // 歌曲搜索
-    searchMusic: function() {
+    searchMusic: async function() {
       var that = this;
-      axios.get("https://autumnfish.cn/search?keywords=" + this.query).then(
-        function(response) {
-          // console.log(response);
-          that.musicList = response.data.result.songs;
-          console.log(response.data.result.songs);
-        },
-        function(err) {}
-      );
+     const response=await axios.get("https://autumnfish.cn/search?keywords=" + this.query)
+     console.log(response)
+     that.musicList = response.data.result.songs;
     },
     // 歌曲播放
     playMusic: function(musicId) {

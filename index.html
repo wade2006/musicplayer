@@ -17,7 +17,7 @@
       <div class="search_bar">
         <img src="images/player_title.png" alt="" />
         <!-- 搜索歌曲 -->
-        <input type="text" autocomplete="off" v-model='query' @keyup.enter="searchMusic();" />
+        <input type="text" autocomplete="off" v-model='query' placeholder="输入歌曲信息后按下Enter键搜索" @keyup.enter="searchMusic();" />
       </div>
       <div class="center_con">
         <!-- 搜索歌曲列表 -->
@@ -104,16 +104,13 @@
       // 方法
       methods: {
         // 搜索歌曲
-        searchMusic() {
+        async searchMusic() {
           if (this.query == 0) {
             return
           }
-          axios.get('/search?keywords=' + this.query).then(response => {
-            // 保存内容
-            this.musicList = response.data.result.songs;
-
-          })
-
+          const response=await  axios.get('/search?keywords=' + this.query);
+          console.log(response)
+          this.musicList = response.data.result.songs;
           // 清空搜索
           this.query = ''
         },
